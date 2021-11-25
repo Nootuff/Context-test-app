@@ -1,11 +1,12 @@
 import './styles/App.css';
-import Navabar from "./components/Navbar";
+import Navbar from "./components/Navbar";
+import Form from "./components/Form";
 
 function App() {
   return (
     <div className="App">
-      
-<Navabar/>
+      <Navbar />
+      <Form />
     </div>
   );
 }

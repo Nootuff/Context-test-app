@@ -11,12 +11,12 @@ class LanguageProvider extends Component {
 
     changeLanguage(event) {
         this.setState({ language: event.target.value });
-      }
+    }
 
     render() {
         return (
             <LanguageContext.Provider
-                value={{ ...this.state, changeLanguageFunc: this.changeLanguage /*The state and the function are exported.*/}}
+                value={{ ...this.state, changeLanguageFunc: this.changeLanguage /*The state and the function are exported.*/ }}
             >
                 {this.props.children}
             </LanguageContext.Provider>
@@ -25,3 +25,10 @@ class LanguageProvider extends Component {
 }
 
 export default LanguageProvider;
+
+export const withLanguageContext = Component => props => ( /*Component and props are parameters, this function takes an entire component as the "component" argument. */
+    <LanguageContext.Consumer>
+      {value => <Component languageContext={value} {...props} />} 
+    </LanguageContext.Consumer>
+    /*"Component" is a placeholder, like a parameter, LanguageContext is a prop being passed in  and "value" is passed in, no idea what value actually is though, all the other props of the component are also passed in with "...props" */
+  );

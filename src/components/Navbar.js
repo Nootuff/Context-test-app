@@ -10,13 +10,19 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import '../styles/NavbarStyles.css';
+import { ThemeContext } from "../contexts/ThemeContext" //Imports the ThemeContext const from ThemeContext.
 
 
 class Navbar extends Component {
+    static contextType = ThemeContext; //This gives you access to everything in ThemeContext.
     render() {
+        const { isDarkMode, toggleThemeFunc } = this.context; //Destructured const, contains the value of isDarkMode & toggleThemeFunc.
+
+        //console.log(this.context);//The context object is accessed this way.
+
         return (
-            <div >
-                <AppBar position="static" color="primary">
+            <div>
+                <AppBar position="static" color={ isDarkMode ? "primary" : "default" /*Ternary operator, looks at the value of isDarkMode in the ThemeContext file*/ }>
                     <Toolbar>
                         <IconButton color="inherit" >
                             <span>France </span>
@@ -24,7 +30,7 @@ class Navbar extends Component {
                         <Typography variant="h6" color="inherit">
                             App Title
                         </Typography>
-                        <Switch color="secondary" />
+                        <Switch color="secondary" onChange={ toggleThemeFunc /*Uses the function defined in ThemeContext*/} />
                         <Paper className="container" >
                             <InputBase
                                 className="search"

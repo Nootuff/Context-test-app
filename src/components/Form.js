@@ -14,11 +14,37 @@ import Typography from '@mui/material/Typography';
 import Select from '@mui/material/Select';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-
+import { LanguageContext } from "../contexts/LanguageContext"
 import '../styles/FormStyles.css';
 
+const words = {
+    english: {
+      signIn: "Sign In",
+      email: "Email Address",
+      password: "Password",
+      remember: "Remember Me"
+    },
+    french: {
+      signIn: "Se Connecter",
+      email: "Adresse Électronique",
+      password: "Mot de Passe",
+      remember: "Souviens-toi De Moi"
+    },
+    spanish: {
+      signIn: "Registrarse",
+      email: "Correo Electrónico",
+      password: "Contraseña",
+      remember: "Recuérdame"
+    }
+}
+
 class Form extends Component {
+    static contextType = LanguageContext; //Allows you to access the context in this file. 
     render() {
+        const { language, changeLanguageFunc } = this.context; //Destructuring. 
+        const email = words[language].email; //No idea how this works at all. 
+        const { signIn, password, remember } = words[language];  //A destructured version of const email above, you could very easily have email in here too, just wanted a destructured and non-destructured version.
+
         return (
             <main >
                 <Paper className="FormPaper">
@@ -26,20 +52,27 @@ class Form extends Component {
                         <LockIcon />
                     </Avatar>
                     <Typography variant="h5">
-                        Sign In
+                        {signIn}
                     </Typography>
-                    <Select value="english">
+                    <Select value={language} onChange={changeLanguageFunc /*The function imported from LanguageContext above, the value this is set to is used in a setstate */} >
                         <MenuItem value="english">English</MenuItem>
                         <MenuItem value="french">French</MenuItem>
                         <MenuItem value="spanish">Spanish</MenuItem>
                     </Select>
                     <form className="FormForm">
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="email">Email</InputLabel>
+                            <InputLabel htmlFor="email">{email}</InputLabel>
                             <Input id="email" name="email" autoFocus />
                         </FormControl>
-                        <FormControlLabel control={<Checkbox color="primary" />} label="Remember me" />
-                        <Button variant="contained" type="submit" color="primary" fullWidth> Sign In</Button>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="password">{password}</InputLabel>
+                            <Input id="password" name="password" autoFocus />
+                        </FormControl>
+                        <FormControlLabel control={<Checkbox color="primary" />} 
+                        label={remember} />
+                        <Button variant="contained" type="submit" color="primary" fullWidth> 
+                        {signIn}
+                        </Button>
                     </form>
                 </Paper>
             </main>

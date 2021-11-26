@@ -10,7 +10,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import '../styles/NavbarStyles.css';
-import { ThemeContext } from "../contexts/ThemeContext" //Imports the ThemeContext const from ThemeContext.
+import { ThemeContext } from "../contexts/ThemeContext"; //Imports the ThemeContext const from ThemeContext.
 
 
 class Navbar extends Component {

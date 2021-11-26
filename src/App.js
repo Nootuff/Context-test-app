@@ -1,13 +1,17 @@
 import './styles/App.css';
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
+import PageContent from "./components/PageContent";
+import ThemeProvider from "./contexts/ThemeContext";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Form />
-    </div>
+    <ThemeProvider>
+      <PageContent>
+        <Navbar />
+        <Form />
+      </PageContent>
+    </ThemeProvider>
   );
 }
 

@@ -24,7 +24,7 @@ class Navbar extends Component {
                         <Typography variant="h6" color="inherit">
                             App Title
                         </Typography>
-                        <Switch />
+                        <Switch color="secondary" />
                         <Paper className="container" >
                             <InputBase
                                 className="search"
